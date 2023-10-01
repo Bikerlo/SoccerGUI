@@ -5,7 +5,11 @@
 package com.mycompany.soccergui;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
+import com.mycompany.views.mainPage;
+import com.mycompany.views.players;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -21,12 +25,25 @@ public class dashboard extends javax.swing.JFrame {
     public dashboard() {
         initComponents();
         initStyles();
+        initContent();
     }
     private void initStyles() {
               
        mensaje.putClientProperty("FlatLaf.style", "font: 16 $light.font");
        mensaje.setForeground(Color.black);
    
+    }
+    private void initContent() {
+        showJPanel(new mainPage());
+    }
+    public static void showJPanel(JPanel p) {
+        p.setSize(750, 430);
+        p.setLocation(0,0);
+        
+        content.removeAll();
+        content.add(p, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
     }
 
     /**
@@ -46,20 +63,24 @@ public class dashboard extends javax.swing.JFrame {
         button_presidents = new javax.swing.JButton();
         button_goals = new javax.swing.JButton();
         button_top3 = new javax.swing.JButton();
-        button_top4 = new javax.swing.JButton();
+        button_mainPage = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         mensaje = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1250, 800));
+        setPreferredSize(new java.awt.Dimension(1020, 600));
 
-        JPanel.setBackground(new java.awt.Color(204, 204, 204));
+        JPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(230, 0, 0));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setAlignmentX(2.0F);
+        jPanel2.setPreferredSize(new java.awt.Dimension(256, 600));
 
         button_teams.setBackground(new java.awt.Color(255, 0, 0));
         button_teams.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
@@ -83,6 +104,11 @@ public class dashboard extends javax.swing.JFrame {
         button_players.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 10, 1, 1, new java.awt.Color(255, 0, 0)));
         button_players.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         button_players.setIconTextGap(10);
+        button_players.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_playersActionPerformed(evt);
+            }
+        });
 
         button_teamMatch.setBackground(new java.awt.Color(255, 0, 0));
         button_teamMatch.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
@@ -130,17 +156,17 @@ public class dashboard extends javax.swing.JFrame {
             }
         });
 
-        button_top4.setBackground(new java.awt.Color(255, 0, 0));
-        button_top4.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
-        button_top4.setForeground(new java.awt.Color(255, 255, 255));
-        button_top4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estadio.png"))); // NOI18N
-        button_top4.setText("Principal");
-        button_top4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 10, 1, 1, new java.awt.Color(255, 0, 0)));
-        button_top4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        button_top4.setIconTextGap(10);
-        button_top4.addActionListener(new java.awt.event.ActionListener() {
+        button_mainPage.setBackground(new java.awt.Color(255, 0, 0));
+        button_mainPage.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
+        button_mainPage.setForeground(new java.awt.Color(255, 255, 255));
+        button_mainPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estadio.png"))); // NOI18N
+        button_mainPage.setText("Principal");
+        button_mainPage.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 10, 1, 1, new java.awt.Color(255, 0, 0)));
+        button_mainPage.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        button_mainPage.setIconTextGap(10);
+        button_mainPage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button_top4ActionPerformed(evt);
+                button_mainPageActionPerformed(evt);
             }
         });
 
@@ -159,7 +185,7 @@ public class dashboard extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(button_top4, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button_mainPage, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button_players, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button_teams, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button_teamMatch, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,7 +206,7 @@ public class dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
-                .addComponent(button_top4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(button_mainPage, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(button_players, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -195,37 +221,38 @@ public class dashboard extends javax.swing.JFrame {
                 .addComponent(button_top3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(255, 50, 50));
+        jPanel3.setBackground(new java.awt.Color(230, 50, 50));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Hoy juega {equipo 1} vs {equipo 2}");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 764, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(166, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        mensaje.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
+        mensaje.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
         mensaje.setForeground(new java.awt.Color(0, 0, 0));
         mensaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botas-de-futbol.png"))); // NOI18N
         mensaje.setText("FUTBOL PROFESIONAL COLOMBIANO-FPC");
 
-        content.setBackground(new java.awt.Color(204, 204, 204));
-        content.setForeground(new java.awt.Color(0, 204, 204));
-
-        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
-        content.setLayout(contentLayout);
-        contentLayout.setHorizontalGroup(
-            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        contentLayout.setVerticalGroup(
-            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        content.setBackground(new java.awt.Color(255, 255, 255));
+        content.setForeground(new java.awt.Color(255, 255, 255));
+        content.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout JPanelLayout = new javax.swing.GroupLayout(JPanel);
         JPanel.setLayout(JPanelLayout);
@@ -282,9 +309,15 @@ public class dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_button_top3ActionPerformed
 
-    private void button_top4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_top4ActionPerformed
+    private void button_mainPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_mainPageActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_button_top4ActionPerformed
+         showJPanel(new mainPage());
+    }//GEN-LAST:event_button_mainPageActionPerformed
+
+    private void button_playersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_playersActionPerformed
+        // TODO add your handling code here:
+        showJPanel(new players());
+    }//GEN-LAST:event_button_playersActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,14 +326,15 @@ public class dashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPanel;
     private javax.swing.JButton button_goals;
+    private javax.swing.JButton button_mainPage;
     private javax.swing.JButton button_players;
     private javax.swing.JButton button_presidents;
     private javax.swing.JButton button_teamMatch;
     private javax.swing.JButton button_teams;
     private javax.swing.JButton button_top3;
-    private javax.swing.JButton button_top4;
-    private javax.swing.JPanel content;
+    private static javax.swing.JPanel content;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
