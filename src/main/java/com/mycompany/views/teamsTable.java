@@ -10,12 +10,12 @@ import static com.mycompany.soccergui.dashboard.showJPanel;
  *
  * @author torre
  */
-public class teams extends javax.swing.JPanel {
+public class teamsTable extends javax.swing.JPanel {
 
     /**
      * Creates new form playersForm
      */
-    public teams() {
+    public teamsTable() {
         initComponents();
     }
 
@@ -58,13 +58,13 @@ public class teams extends javax.swing.JPanel {
 
         tablePlayers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Estadio", "Ciudad", "Aforo", "Anio Fundacion", "Presidente"
             }
         ));
         tableTeams.setViewportView(tablePlayers);

@@ -10,12 +10,12 @@ import static com.mycompany.soccergui.dashboard.showJPanel;
  *
  * @author torre
  */
-public class presidents extends javax.swing.JPanel {
+public class presidentTable extends javax.swing.JPanel {
 
     /**
      * Creates new form playersForm
      */
-    public presidents() {
+    public presidentTable() {
         initComponents();
     }
 
@@ -64,7 +64,7 @@ public class presidents extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "DNI", "Nombre", "Equipo", "Anio "
             }
         ));
         tablePresident.setViewportView(tablePlayers);

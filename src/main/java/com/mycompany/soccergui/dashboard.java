@@ -5,11 +5,7 @@
 package com.mycompany.soccergui;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
-import com.mycompany.views.mainPage;
-import com.mycompany.views.matches;
-import com.mycompany.views.players;
-import com.mycompany.views.presidents;
-import com.mycompany.views.teams;
+import com.mycompany.views.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -155,6 +151,11 @@ public class dashboard extends javax.swing.JFrame {
         button_goals.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         button_goals.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         button_goals.setIconTextGap(10);
+        button_goals.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_goalsActionPerformed(evt);
+            }
+        });
 
         button_top3.setBackground(new java.awt.Color(255, 0, 0));
         button_top3.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
@@ -238,7 +239,7 @@ public class dashboard extends javax.swing.JFrame {
                 .addComponent(button_top3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(230, 50, 50));
+        jPanel3.setBackground(new java.awt.Color(255, 51, 0));
 
         textHeader.setBackground(new java.awt.Color(255, 255, 255));
         textHeader.setFont(new java.awt.Font("Roboto Light", 1, 24)); // NOI18N
@@ -316,14 +317,14 @@ public class dashboard extends javax.swing.JFrame {
 
     private void button_teamsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_teamsActionPerformed
         // TODO add your handling code here:
-        showJPanel(new teams());
+        showJPanel(new teamsTable());
         textHeader.setText("Equipos");
         
     }//GEN-LAST:event_button_teamsActionPerformed
 
     private void button_presidentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_presidentsActionPerformed
         // TODO add your handling code here:
-        showJPanel(new presidents());
+        showJPanel(new presidentTable());
          textHeader.setText("Presidentes");
         
     }//GEN-LAST:event_button_presidentsActionPerformed
@@ -341,15 +342,21 @@ public class dashboard extends javax.swing.JFrame {
 
     private void button_playersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_playersActionPerformed
         // TODO add your handling code here:
-        showJPanel(new players());
+        showJPanel(new playersTable());
         textHeader.setText("Jugadores");
     }//GEN-LAST:event_button_playersActionPerformed
 
     private void button_teamMatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_teamMatchActionPerformed
         // TODO add your handling code here:
-        showJPanel(new matches());
+        showJPanel(new matchesTable());
         textHeader.setText("Partidos");
     }//GEN-LAST:event_button_teamMatchActionPerformed
+
+    private void button_goalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_goalsActionPerformed
+        // TODO add your handling code here:
+        showJPanel(new goalTable());
+        textHeader.setText("Partidos");
+    }//GEN-LAST:event_button_goalsActionPerformed
 
     /**
      * @param args the command line arguments

@@ -302,6 +302,9 @@
                 <Property name="horizontalAlignment" type="int" value="2"/>
                 <Property name="iconTextGap" type="int" value="10"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button_goalsActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="button_top3">
               <Properties>
@@ -393,7 +396,7 @@
         <Container class="javax.swing.JPanel" name="jPanel3">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="32" green="32" red="e6" type="rgb"/>
+              <Color blue="0" green="33" red="ff" type="rgb"/>
             </Property>
           </Properties>
 

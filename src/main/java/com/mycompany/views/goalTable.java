@@ -10,12 +10,12 @@ import static com.mycompany.soccergui.dashboard.showJPanel;
  *
  * @author torre
  */
-public class matches extends javax.swing.JPanel {
+public class goalTable extends javax.swing.JPanel {
 
     /**
      * Creates new form playersForm
      */
-    public matches() {
+    public goalTable() {
         initComponents();
     }
 
@@ -28,31 +28,31 @@ public class matches extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        saearchFieldMatch = new javax.swing.JTextField();
-        searchMatch = new javax.swing.JButton();
-        tableMatch = new javax.swing.JScrollPane();
+        background = new javax.swing.JPanel();
+        saearchFieldGoal = new javax.swing.JTextField();
+        searchGoal = new javax.swing.JButton();
+        tableGoal = new javax.swing.JScrollPane();
         tablePlayers = new javax.swing.JTable();
-        createMatch = new javax.swing.JButton();
-        updateMacth = new javax.swing.JButton();
-        deleteMacth = new javax.swing.JButton();
+        createGoal = new javax.swing.JButton();
+        updateGoal = new javax.swing.JButton();
+        deleteGoal = new javax.swing.JButton();
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        background.setBackground(new java.awt.Color(255, 255, 255));
 
-        saearchFieldMatch.setBackground(new java.awt.Color(255, 255, 255));
-        saearchFieldMatch.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
-        saearchFieldMatch.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        saearchFieldMatch.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        saearchFieldGoal.setBackground(new java.awt.Color(255, 255, 255));
+        saearchFieldGoal.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        saearchFieldGoal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        saearchFieldGoal.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
-        searchMatch.setBackground(new java.awt.Color(255, 0, 0));
-        searchMatch.setFont(new java.awt.Font("Segoe UI Variable", 0, 14)); // NOI18N
-        searchMatch.setForeground(new java.awt.Color(255, 255, 255));
-        searchMatch.setText("Buscar");
-        searchMatch.setBorder(new javax.swing.border.MatteBorder(null));
-        searchMatch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        searchMatch.addActionListener(new java.awt.event.ActionListener() {
+        searchGoal.setBackground(new java.awt.Color(255, 0, 0));
+        searchGoal.setFont(new java.awt.Font("Segoe UI Variable", 0, 14)); // NOI18N
+        searchGoal.setForeground(new java.awt.Color(255, 255, 255));
+        searchGoal.setText("Buscar");
+        searchGoal.setBorder(new javax.swing.border.MatteBorder(null));
+        searchGoal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        searchGoal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchMatchActionPerformed(evt);
+                searchGoalActionPerformed(evt);
             }
         });
 
@@ -64,82 +64,82 @@ public class matches extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Gol ID", "Jugador", "Minuto", "Partido"
             }
         ));
-        tableMatch.setViewportView(tablePlayers);
+        tableGoal.setViewportView(tablePlayers);
 
-        createMatch.setBackground(new java.awt.Color(255, 0, 0));
-        createMatch.setFont(new java.awt.Font("Segoe UI Variable", 0, 14)); // NOI18N
-        createMatch.setForeground(new java.awt.Color(255, 255, 255));
-        createMatch.setText("Crear");
-        createMatch.setBorder(new javax.swing.border.MatteBorder(null));
-        createMatch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        createMatch.addActionListener(new java.awt.event.ActionListener() {
+        createGoal.setBackground(new java.awt.Color(255, 0, 0));
+        createGoal.setFont(new java.awt.Font("Segoe UI Variable", 0, 14)); // NOI18N
+        createGoal.setForeground(new java.awt.Color(255, 255, 255));
+        createGoal.setText("Crear");
+        createGoal.setBorder(new javax.swing.border.MatteBorder(null));
+        createGoal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        createGoal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createMatchActionPerformed(evt);
+                createGoalActionPerformed(evt);
             }
         });
 
-        updateMacth.setBackground(new java.awt.Color(255, 0, 0));
-        updateMacth.setFont(new java.awt.Font("Segoe UI Variable", 0, 14)); // NOI18N
-        updateMacth.setForeground(new java.awt.Color(255, 255, 255));
-        updateMacth.setText("Actualizar");
-        updateMacth.setBorder(new javax.swing.border.MatteBorder(null));
-        updateMacth.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        updateMacth.addActionListener(new java.awt.event.ActionListener() {
+        updateGoal.setBackground(new java.awt.Color(255, 0, 0));
+        updateGoal.setFont(new java.awt.Font("Segoe UI Variable", 0, 14)); // NOI18N
+        updateGoal.setForeground(new java.awt.Color(255, 255, 255));
+        updateGoal.setText("Actualizar");
+        updateGoal.setBorder(new javax.swing.border.MatteBorder(null));
+        updateGoal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updateGoal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateMacthActionPerformed(evt);
+                updateGoalActionPerformed(evt);
             }
         });
 
-        deleteMacth.setBackground(new java.awt.Color(255, 0, 0));
-        deleteMacth.setFont(new java.awt.Font("Segoe UI Variable", 0, 14)); // NOI18N
-        deleteMacth.setForeground(new java.awt.Color(255, 255, 255));
-        deleteMacth.setText("Borrar");
-        deleteMacth.setBorder(new javax.swing.border.MatteBorder(null));
-        deleteMacth.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        deleteMacth.addActionListener(new java.awt.event.ActionListener() {
+        deleteGoal.setBackground(new java.awt.Color(255, 0, 0));
+        deleteGoal.setFont(new java.awt.Font("Segoe UI Variable", 0, 14)); // NOI18N
+        deleteGoal.setForeground(new java.awt.Color(255, 255, 255));
+        deleteGoal.setText("Borrar");
+        deleteGoal.setBorder(new javax.swing.border.MatteBorder(null));
+        deleteGoal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        deleteGoal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteMacthActionPerformed(evt);
+                deleteGoalActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
+        background.setLayout(backgroundLayout);
+        backgroundLayout.setHorizontalGroup(
+            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backgroundLayout.createSequentialGroup()
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(backgroundLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(createMatch, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(createGoal, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(updateMacth, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(updateGoal, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deleteMacth, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(deleteGoal, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(backgroundLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(saearchFieldMatch)
+                        .addComponent(saearchFieldGoal)
                         .addGap(18, 18, 18)
-                        .addComponent(searchMatch, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(searchGoal, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(6, 6, 6))
-            .addComponent(tableMatch, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+            .addComponent(tableGoal, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        backgroundLayout.setVerticalGroup(
+            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backgroundLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saearchFieldMatch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchMatch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saearchFieldGoal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchGoal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
-                .addComponent(tableMatch, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                .addComponent(tableGoal, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                 .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deleteMacth, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateMacth, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(createMatch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteGoal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateGoal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createGoal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32))
         );
 
@@ -147,40 +147,40 @@ public class matches extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void searchMatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchMatchActionPerformed
+    private void searchGoalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchGoalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchMatchActionPerformed
+    }//GEN-LAST:event_searchGoalActionPerformed
 
-    private void createMatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createMatchActionPerformed
+    private void createGoalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createGoalActionPerformed
         // TODO add your handling code here:
-        showJPanel(new matchesForm());
-    }//GEN-LAST:event_createMatchActionPerformed
+        showJPanel(new goalForm());
+    }//GEN-LAST:event_createGoalActionPerformed
 
-    private void updateMacthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateMacthActionPerformed
+    private void updateGoalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateGoalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_updateMacthActionPerformed
+    }//GEN-LAST:event_updateGoalActionPerformed
 
-    private void deleteMacthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMacthActionPerformed
+    private void deleteGoalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteGoalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_deleteMacthActionPerformed
+    }//GEN-LAST:event_deleteGoalActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton createMatch;
-    private javax.swing.JButton deleteMacth;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField saearchFieldMatch;
-    private javax.swing.JButton searchMatch;
-    private javax.swing.JScrollPane tableMatch;
+    private javax.swing.JPanel background;
+    private javax.swing.JButton createGoal;
+    private javax.swing.JButton deleteGoal;
+    private javax.swing.JTextField saearchFieldGoal;
+    private javax.swing.JButton searchGoal;
+    private javax.swing.JScrollPane tableGoal;
     private javax.swing.JTable tablePlayers;
-    private javax.swing.JButton updateMacth;
+    private javax.swing.JButton updateGoal;
     // End of variables declaration//GEN-END:variables
 }
