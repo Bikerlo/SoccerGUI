@@ -4,7 +4,7 @@
  */
 package com.mycompany.soccergui;
 
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import com.mycompany.views.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -36,6 +36,7 @@ public class dashboard extends javax.swing.JFrame {
         showJPanel(new mainPage());
         textHeader.setText("Home page");
     }
+    
     public static void showJPanel(JPanel p) {
         p.setSize(750, 430);
         p.setLocation(0,0);
@@ -355,7 +356,7 @@ public class dashboard extends javax.swing.JFrame {
     private void button_goalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_goalsActionPerformed
         // TODO add your handling code here:
         showJPanel(new goalTable());
-        textHeader.setText("Partidos");
+        textHeader.setText("Goles");
     }//GEN-LAST:event_button_goalsActionPerformed
 
     /**
@@ -385,7 +386,7 @@ public class dashboard extends javax.swing.JFrame {
      */
     public static void main(String[] args) {
         try {
-            UIManager.setLookAndFeel( new FlatMaterialLighterIJTheme() );
+            UIManager.setLookAndFeel( new FlatMacLightLaf() );
         } catch( UnsupportedLookAndFeelException ex ) {
             System.err.println( "Failed to initialize LaF" );
         }
