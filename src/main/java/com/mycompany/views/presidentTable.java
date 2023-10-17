@@ -5,18 +5,30 @@
 package com.mycompany.views;
 
 import static com.mycompany.soccergui.dashboard.showJPanel;
-
+import javax.swing.table.DefaultTableModel;
+import com.mycompany.interfaces.PresidentDAO;
+import com.mycompany.interfaces.PresidentDAOimpl;
 /**
  *
  * @author torre
  */
 public class presidentTable extends javax.swing.JPanel {
-
     /**
      * Creates new form playersForm
      */
     public presidentTable() {
         initComponents();
+        loadUsers();
+    }
+    
+    private void loadUsers() {
+        try {
+            PresidentDAO dao = new PresidentDAOimpl();
+            DefaultTableModel model = (DefaultTableModel) tablePresident.getModel();
+            dao.listAll("").forEach((u) -> model.addRow(new Object[]{u.getID(), u.getDNI(), u.getName(), u.getBornDate(), u.getElectionYear()}));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -28,16 +40,16 @@ public class presidentTable extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        background = new javax.swing.JPanel();
         searchFieldPresident = new javax.swing.JTextField();
         searchPresident = new javax.swing.JButton();
-        tablePresident = new javax.swing.JScrollPane();
-        tablePlayers = new javax.swing.JTable();
+        scrollPanePresident = new javax.swing.JScrollPane();
+        tablePresident = new javax.swing.JTable();
         createPresident = new javax.swing.JButton();
         updatePresident = new javax.swing.JButton();
         deletePresident = new javax.swing.JButton();
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        background.setBackground(new java.awt.Color(255, 255, 255));
 
         searchFieldPresident.setBackground(new java.awt.Color(255, 255, 255));
         searchFieldPresident.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
@@ -56,18 +68,24 @@ public class presidentTable extends javax.swing.JPanel {
             }
         });
 
-        tablePlayers.setModel(new javax.swing.table.DefaultTableModel(
+        tablePresident.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "DNI", "Nombre", "Equipo", "Anio "
+                "ID", "DNI", "Nombre", "Fecha Nacimiento", "Fecha Eleccion"
             }
-        ));
-        tablePresident.setViewportView(tablePlayers);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablePresident.setShowGrid(true);
+        scrollPanePresident.setViewportView(tablePresident);
 
         createPresident.setBackground(new java.awt.Color(255, 0, 0));
         createPresident.setFont(new java.awt.Font("Segoe UI Variable", 0, 14)); // NOI18N
@@ -105,38 +123,38 @@ public class presidentTable extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
+        background.setLayout(backgroundLayout);
+        backgroundLayout.setHorizontalGroup(
+            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backgroundLayout.createSequentialGroup()
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(backgroundLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(createPresident, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(updatePresident, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(deletePresident, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(backgroundLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(searchFieldPresident)
                         .addGap(18, 18, 18)
                         .addComponent(searchPresident, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(6, 6, 6))
-            .addComponent(tablePresident, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+            .addComponent(scrollPanePresident, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        backgroundLayout.setVerticalGroup(
+            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backgroundLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchFieldPresident, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchPresident, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
-                .addComponent(tablePresident, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                .addComponent(scrollPanePresident, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                 .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deletePresident, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(updatePresident, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(createPresident, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -147,40 +165,69 @@ public class presidentTable extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchPresidentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchPresidentActionPerformed
-        // TODO add your handling code here:
+        try {
+            PresidentDAO dao = new PresidentDAOimpl();
+            DefaultTableModel model = (DefaultTableModel) tablePresident.getModel();
+            model.setRowCount(0);
+            dao.listAll(searchFieldPresident.getText()).forEach((u) -> model.addRow(new Object[]{u.getID(), u.getDNI(), u.getName(), u.getBornDate(), u.getElectionYear()}));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_searchPresidentActionPerformed
 
     private void createPresidentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPresidentActionPerformed
-        // TODO add your handling code here:
         showJPanel(new presidentForm());
     }//GEN-LAST:event_createPresidentActionPerformed
 
     private void updatePresidentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePresidentActionPerformed
-        // TODO add your handling code here:
+        if (tablePresident.getSelectedRow() > -1) {
+            try {
+                int presidentId = (int) tablePresident.getValueAt(tablePresident.getSelectedRow(), 0);
+                PresidentDAO dao = new PresidentDAOimpl();
+                showJPanel(new presidentForm(dao.getPresidentById(presidentId)));
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Debes seleccionar el usuario a editar.\n", "AVISO", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_updatePresidentActionPerformed
 
     private void deletePresidentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePresidentActionPerformed
-        // TODO add your handling code here:
+        PresidentDAO dao = new PresidentDAOimpl();
+        DefaultTableModel model = (DefaultTableModel) tablePresident.getModel();
+        if (tablePresident.getSelectedRows().length < 1) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Debes seleccionar uno o más usuarios a eliminar.\n", "AVISO", javax.swing.JOptionPane.ERROR_MESSAGE);
+        } else {
+            for (int i : tablePresident.getSelectedRows()) {
+                try {
+                    dao.delete(dao.getPresidentById((int) tablePresident.getValueAt(i, 0)));
+                    model.removeRow(i);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
     }//GEN-LAST:event_deletePresidentActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel background;
     private javax.swing.JButton createPresident;
     private javax.swing.JButton deletePresident;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane scrollPanePresident;
     private javax.swing.JTextField searchFieldPresident;
     private javax.swing.JButton searchPresident;
-    private javax.swing.JTable tablePlayers;
-    private javax.swing.JScrollPane tablePresident;
+    private javax.swing.JTable tablePresident;
     private javax.swing.JButton updatePresident;
     // End of variables declaration//GEN-END:variables
 }

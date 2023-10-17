@@ -4,26 +4,27 @@
  */
 package com.mycompany.db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author torre
  */
+
+
 public class Database {
     
     protected Connection conection;
-    private final String JDBC_DRIVER = "com.mysql.jdbc.Dirver";
-    private final String DB_URL = "jbdc:mysql://localhost/mydb";
+    private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    private final String DB_URL = "jdbc:mysql://localhost:3307/soccergui"+"?useSSL=false&serverTimezone=UTC";
     
     private final String USER = "root";
     private final String PASS = "123456789";
     
-     public void conect() throws ClassNotFoundException {
+    public void conect() throws ClassNotFoundException {
         try {
             conection = DriverManager.getConnection(DB_URL, USER, PASS);
             Class.forName(JDBC_DRIVER);

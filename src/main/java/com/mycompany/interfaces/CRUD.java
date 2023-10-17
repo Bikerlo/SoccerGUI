@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package com.mycompany.interfaces;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -15,7 +16,6 @@ public interface CRUD<T> {
     
      // Crear un nuevo registro
     void create(T entity);
-
     // Leer un registro por su ID
 
     /**
@@ -24,7 +24,6 @@ public interface CRUD<T> {
      * @return
      */
     T read(int id);
-
     // Actualizar un registro
     void update(T entity);
 
@@ -32,6 +31,6 @@ public interface CRUD<T> {
     void delete(T entity);
 
     // Listar todos los registros
-    List<T> listAll();
+    List<T> listAll(String name)throws SQLException, Exception;
     
 }
