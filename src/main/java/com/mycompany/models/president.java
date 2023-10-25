@@ -4,21 +4,31 @@
  */
 package com.mycompany.models;
 
+import static com.mycompany.util.DateConverter.strToDate;
+import java.util.Date;
+
 /**
  *
  * @author torre
  */
-public class president {
+public class President {
     
-    private int DNI;
+    private int ID;
+    private String DNI;
     private String name;
     private String lastname;
-    private String team;
-    private String bornDate;
-    private String electionYear;
+    private Date birthDay;
+    private Date electionYear;
 
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 
-    public void setDNI(int DNI) {
+    public int getID() {
+        return ID;
+    }
+
+    public void setDNI(String DNI) {
         this.DNI = DNI;
     }
 
@@ -30,19 +40,15 @@ public class president {
         this.lastname = lastname;
     }
 
-    public void setTeam(String team) {
-        this.team = team;
-    }
-
-    public void setBornDate(String bornDate) {
-        this.bornDate = bornDate;
+    public void setBirthDay(String birthDay) {
+        this.birthDay = strToDate(birthDay);
     }
 
     public void setElectionYear(String electionYear) {
-        this.electionYear = electionYear;
+        this.electionYear = strToDate(electionYear);
     }
     
-    public int getDNI() {
+    public String getDNI() {
         return DNI;
     }
     
@@ -53,22 +59,13 @@ public class president {
     public String getLastname() {
         return lastname;
     }
-
-    public String getTeam() {
-        return team;
+    
+    public Date getBirthDay() {
+        return birthDay;
     }
 
-    public String getBornDate() {
-        return bornDate;
-    }
-
-    public String getElectionYear() {
+    public Date getElectionYear() {
         return electionYear;
     }
-    
-    
-    
-    
-    
     
 }

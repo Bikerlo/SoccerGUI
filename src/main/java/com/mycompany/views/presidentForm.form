@@ -189,14 +189,14 @@
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="electionDate">
           <Properties>
-            <Property name="dateFormatString" type="java.lang.String" value="Y-M-d"/>
+            <Property name="dateFormatString" type="java.lang.String" value="yyyy-M-d"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="nameText">
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="bornDate">
           <Properties>
-            <Property name="dateFormatString" type="java.lang.String" value="Y-M-d"/>
+            <Property name="dateFormatString" type="java.lang.String" value="yyyy-M-d"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="apPLbl1">

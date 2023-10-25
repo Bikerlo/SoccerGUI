@@ -48,23 +48,23 @@
                                   <Component id="nameLbl" pref="48" max="32767" attributes="0"/>
                                   <EmptySpace min="223" pref="223" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="nameTxt" alignment="0" max="32767" attributes="0"/>
+                              <Component id="nameText" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="apPLbl" max="32767" attributes="0"/>
                                   <EmptySpace min="182" pref="182" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="apPTxt" alignment="0" max="32767" attributes="0"/>
+                              <Component id="stadiumText" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="apMLbl" max="32767" attributes="0"/>
                                   <EmptySpace min="180" pref="180" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="apMTxt" alignment="0" max="32767" attributes="0"/>
+                              <Component id="qtyText" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                           <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="domTxt" alignment="0" max="32767" attributes="0"/>
+                              <Component id="cityText" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="domLbl" max="32767" attributes="0"/>
                                   <EmptySpace min="220" pref="220" max="-2" attributes="0"/>
@@ -74,8 +74,8 @@
                                   <EmptySpace min="218" pref="218" max="-2" attributes="0"/>
                               </Group>
                               <Component id="button" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jDateChooser1" max="32767" attributes="0"/>
-                              <Component id="jComboBox1" max="32767" attributes="0"/>
+                              <Component id="yearText" max="32767" attributes="0"/>
+                              <Component id="presidentCombo" max="32767" attributes="0"/>
                               <Component id="phoneLbl1" alignment="0" pref="304" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
@@ -99,30 +99,30 @@
                           <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                           <Component id="nameLbl" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="nameTxt" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="nameText" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="apPLbl" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="apPTxt" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="stadiumText" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="apMLbl" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="apMTxt" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="qtyText" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                           <Component id="domLbl" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="domTxt" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="cityText" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           <Component id="phoneLbl" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jDateChooser1" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="yearText" min="-2" pref="38" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                           <Component id="phoneLbl1" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                          <Component id="jComboBox1" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="presidentCombo" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                           <Component id="button" min="-2" pref="50" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
@@ -147,21 +147,21 @@
             <Property name="text" type="java.lang.String" value="Nombre"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="nameTxt">
+        <Component class="javax.swing.JTextField" name="nameText">
         </Component>
         <Component class="javax.swing.JLabel" name="apPLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Estadio"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="apPTxt">
+        <Component class="javax.swing.JTextField" name="stadiumText">
         </Component>
         <Component class="javax.swing.JLabel" name="apMLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Aforo"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="apMTxt">
+        <Component class="javax.swing.JTextField" name="qtyText">
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
           <Properties>
@@ -179,7 +179,7 @@
             <Property name="text" type="java.lang.String" value="Ciudad"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="domTxt">
+        <Component class="javax.swing.JTextField" name="cityText">
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
@@ -210,9 +210,12 @@
             <Property name="text" type="java.lang.String" value="Anio Fundacion"/>
           </Properties>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+        <Component class="com.toedter.calendar.JDateChooser" name="yearText">
+          <Properties>
+            <Property name="dateFormatString" type="java.lang.String" value="yyyy-M-d"/>
+          </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="presidentCombo">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -223,6 +226,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="presidentComboActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>

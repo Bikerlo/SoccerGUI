@@ -6,6 +6,7 @@ package com.mycompany.interfaces;
 
 import com.mycompany.db.Database;
 import com.mycompany.models.President;
+import static com.mycompany.util.DateConverter.dateToStr;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,8 +28,8 @@ public class PresidentDAOimpl extends Database implements PresidentDAO{
              try (PreparedStatement st = this.conection.prepareStatement("INSERT INTO presidente(DNI, Nombre, Fecha_nacimiento, Fecha_ingreso) VALUES(?,?,?,?);")) {
                  st.setString(1, entity.getDNI());
                  st.setString(2, entity.getName());
-                 st.setString(3, entity.getBornDate());
-                 st.setString(4, entity.getElectionYear());
+                 st.setString(3, dateToStr(entity.getBirthDay()));
+                 st.setString(4, dateToStr(entity.getElectionYear()));
                  st.executeUpdate();
              }
         } catch(ClassNotFoundException | SQLException e) {
@@ -55,13 +56,14 @@ public class PresidentDAOimpl extends Database implements PresidentDAO{
     public void update(President entity) {
         try {
             this.conect();
-             try (PreparedStatement st = this.conection.prepareStatement("UPDATE presidente SET DNI = ?, Nombre = ?, Fecha_nacimiento = ?, Fecha_ingreso = ? WHERE id = ?")) {
+             try (PreparedStatement st = this.conection.prepareStatement("UPDATE presidente SET DNI = ?, Nombre = ?, Fecha_nacimiento = ?, Fecha_ingreso = ? WHERE id = ?;")) {
                  st.setString(1, entity.getDNI());
                  st.setString(2, entity.getName());
-                 st.setString(3, entity.getBornDate());
-                 st.setString(4, entity.getElectionYear());
+                 st.setString(3, dateToStr(entity.getBirthDay()));
+                 st.setString(4, dateToStr(entity.getElectionYear()));
                  st.setInt(5, entity.getID());
                  st.executeUpdate();
+                 System.out.println(entity.getBirthDay());
              }
         } catch(ClassNotFoundException | SQLException e) {
              try {
@@ -116,7 +118,7 @@ public class PresidentDAOimpl extends Database implements PresidentDAO{
                         presidente.setID(rs.getInt("id"));
                         presidente.setDNI(rs.getString("DNI"));
                         presidente.setName(rs.getString("Nombre"));
-                        presidente.setBornDate(rs.getString("Fecha_nacimiento"));
+                        presidente.setBirthDay(rs.getString("Fecha_nacimiento"));
                         presidente.setElectionYear(rs.getString("Fecha_ingreso"));
                         
                         lista.add(presidente);
@@ -146,7 +148,7 @@ public class PresidentDAOimpl extends Database implements PresidentDAO{
                         presidente.setID(rs.getInt("id"));
                         presidente.setDNI(rs.getString("DNI"));
                         presidente.setName(rs.getString("Nombre"));
-                        presidente.setBornDate(rs.getString("Fecha_nacimiento"));
+                        presidente.setBirthDay(rs.getString("Fecha_nacimiento"));
                         presidente.setElectionYear(rs.getString("Fecha_ingreso"));
                     }
                 }
@@ -157,6 +159,31 @@ public class PresidentDAOimpl extends Database implements PresidentDAO{
             this.close();
         }
         return presidente;
+    }
+    
+    @Override
+    public List<String> getPresidentListName() throws ClassNotFoundException, SQLException{
+    
+       List<String> lista = null;
+        try {
+            this.conect();
+            String Query = "SELECT Nombre FROM presidente;";
+            try (PreparedStatement st = this.conection.prepareStatement(Query)) {
+                lista = new ArrayList();
+                try (ResultSet rs = st.executeQuery()) {
+                    while(rs.next()) {
+                        lista.add(rs.getString(1));
+                    }
+                }
+            }
+        } catch(ClassNotFoundException | SQLException e) {
+            throw e;
+        } finally {
+            this.close();
+        }
+        
+        return lista;
+    
     }
     
 }

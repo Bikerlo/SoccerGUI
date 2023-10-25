@@ -4,7 +4,16 @@
  */
 package com.mycompany.views;
 
+import com.mycompany.interfaces.PresidentDAO;
+import com.mycompany.interfaces.PresidentDAOimpl;
+import com.mycompany.interfaces.teamDAO;
+import com.mycompany.interfaces.teamDAOimpl;
 import static com.mycompany.soccergui.dashboard.showJPanel;
+import static com.mycompany.util.DateConverter.dateToStr;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +26,7 @@ public class teamsTable extends javax.swing.JPanel {
      */
     public teamsTable() {
         initComponents();
+        loadTeams();
     }
 
     /**
@@ -32,7 +42,7 @@ public class teamsTable extends javax.swing.JPanel {
         searchFieldTeams = new javax.swing.JTextField();
         searchTeams = new javax.swing.JButton();
         tableTeams = new javax.swing.JScrollPane();
-        tablePlayers = new javax.swing.JTable();
+        listTeams = new javax.swing.JTable();
         createTeams = new javax.swing.JButton();
         updateTeams = new javax.swing.JButton();
         deleteTeams = new javax.swing.JButton();
@@ -56,18 +66,23 @@ public class teamsTable extends javax.swing.JPanel {
             }
         });
 
-        tablePlayers.setModel(new javax.swing.table.DefaultTableModel(
+        listTeams.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Nombre", "Estadio", "Ciudad", "Aforo", "Anio Fundacion", "Presidente"
+                "ID", "Nombre", "Estadio", "Aforo", "Anio Fundacion", "Ciudad", "Presidente"
             }
-        ));
-        tableTeams.setViewportView(tablePlayers);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableTeams.setViewportView(listTeams);
 
         createTeams.setBackground(new java.awt.Color(255, 0, 0));
         createTeams.setFont(new java.awt.Font("Segoe UI Variable", 0, 14)); // NOI18N
@@ -160,8 +175,14 @@ public class teamsTable extends javax.swing.JPanel {
     }//GEN-LAST:event_searchTeamsActionPerformed
 
     private void createTeamsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTeamsActionPerformed
-        // TODO add your handling code here:
-        showJPanel(new teamsForm());
+        try {
+            // TODO add your handling code here:
+            showJPanel(new teamsForm());
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(teamsTable.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(teamsTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_createTeamsActionPerformed
 
     private void updateTeamsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTeamsActionPerformed
@@ -177,10 +198,20 @@ public class teamsTable extends javax.swing.JPanel {
     private javax.swing.JButton createTeams;
     private javax.swing.JButton deleteTeams;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTable listTeams;
     private javax.swing.JTextField searchFieldTeams;
     private javax.swing.JButton searchTeams;
-    private javax.swing.JTable tablePlayers;
     private javax.swing.JScrollPane tableTeams;
     private javax.swing.JButton updateTeams;
     // End of variables declaration//GEN-END:variables
+
+    private void loadTeams() {
+        try {
+            teamDAO dao = new teamDAOimpl();
+            DefaultTableModel model = (DefaultTableModel) listTeams.getModel();
+            dao.listAll("").forEach((u) -> model.addRow(new Object[]{u.getId(),u.getName(), u.getStadium(), u.getCapacity(), dateToStr(u.getFoundationYear()), u.getCity(), u.getPresidentName()}));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

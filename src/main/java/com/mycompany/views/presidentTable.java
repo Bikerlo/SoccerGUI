@@ -8,6 +8,7 @@ import static com.mycompany.soccergui.dashboard.showJPanel;
 import javax.swing.table.DefaultTableModel;
 import com.mycompany.interfaces.PresidentDAO;
 import com.mycompany.interfaces.PresidentDAOimpl;
+import static com.mycompany.util.DateConverter.dateToStr;
 /**
  *
  * @author torre
@@ -25,7 +26,7 @@ public class presidentTable extends javax.swing.JPanel {
         try {
             PresidentDAO dao = new PresidentDAOimpl();
             DefaultTableModel model = (DefaultTableModel) tablePresident.getModel();
-            dao.listAll("").forEach((u) -> model.addRow(new Object[]{u.getID(), u.getDNI(), u.getName(), u.getBornDate(), u.getElectionYear()}));
+            dao.listAll("").forEach((u) -> model.addRow(new Object[]{u.getID(), u.getDNI(), u.getName(), dateToStr(u.getBirthDay()), dateToStr(u.getElectionYear())}));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -178,7 +179,7 @@ public class presidentTable extends javax.swing.JPanel {
             PresidentDAO dao = new PresidentDAOimpl();
             DefaultTableModel model = (DefaultTableModel) tablePresident.getModel();
             model.setRowCount(0);
-            dao.listAll(searchFieldPresident.getText()).forEach((u) -> model.addRow(new Object[]{u.getID(), u.getDNI(), u.getName(), u.getBornDate(), u.getElectionYear()}));
+            dao.listAll(searchFieldPresident.getText()).forEach((u) -> model.addRow(new Object[]{u.getID(), u.getDNI(), u.getName(), u.getBirthDay(), u.getElectionYear()}));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

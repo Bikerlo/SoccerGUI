@@ -5,6 +5,8 @@
 package com.mycompany.interfaces;
 
 import com.mycompany.models.President;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -12,4 +14,5 @@ import com.mycompany.models.President;
  */
 public interface PresidentDAO extends CRUD<President> {
      public President getPresidentById(int presidentId) throws Exception ;
+     public List<String> getPresidentListName() throws ClassNotFoundException, SQLException;
 }

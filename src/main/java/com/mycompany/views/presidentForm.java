@@ -8,8 +8,7 @@ import java.util.Date;
 import com.mycompany.interfaces.PresidentDAO;
 import com.mycompany.interfaces.PresidentDAOimpl;
 import com.mycompany.models.President;
-import static com.mycompany.soccergui.DateConverter.dateToStr;
-import static com.mycompany.soccergui.DateConverter.strToDate;
+import static com.mycompany.util.DateConverter.*;
 import java.awt.Color;
 import java.awt.HeadlessException;
 
@@ -54,8 +53,8 @@ public class presidentForm extends javax.swing.JPanel {
 
             if (PresidentEdition != null) {
                 dniText.setText(PresidentEdition.getDNI());
-                electionDate.setDate(strToDate(PresidentEdition.getElectionYear()));
-                bornDate.setDate(strToDate(PresidentEdition.getBornDate()));
+                electionDate.setDate(PresidentEdition.getElectionYear());
+                bornDate.setDate(PresidentEdition.getBirthDay());
                 nameText.setText(PresidentEdition.getName());
             }
         }
@@ -116,9 +115,9 @@ public class presidentForm extends javax.swing.JPanel {
             }
         });
 
-        electionDate.setDateFormatString("Y-M-d");
+        electionDate.setDateFormatString("yyyy-M-d");
 
-        bornDate.setDateFormatString("Y-M-d");
+        bornDate.setDateFormatString("yyyy-M-d");
 
         apPLbl1.setText("Fecha Nacimiento");
 
@@ -222,7 +221,7 @@ public class presidentForm extends javax.swing.JPanel {
 
         com.mycompany.models.President president = isEdition ? PresidentEdition : new com.mycompany.models.President();
         president.setName(name);
-        president.setBornDate(dateToStr(bithDate));
+        president.setBirthDay(dateToStr(bithDate));
         president.setElectionYear(dateToStr(election));
         president.setDNI(DNI);
 

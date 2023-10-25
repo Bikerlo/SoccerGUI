@@ -7,7 +7,6 @@ package com.mycompany.db;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,7 +16,7 @@ import javax.swing.JOptionPane;
 
 public class Database {
     
-    protected Connection conection;
+    public Connection conection;
     private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     private final String DB_URL = "jdbc:mysql://localhost:3307/soccergui"+"?useSSL=false&serverTimezone=UTC";
     

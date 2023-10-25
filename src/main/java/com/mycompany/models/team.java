@@ -4,21 +4,27 @@
  */
 package com.mycompany.models;
 
+import static com.mycompany.util.DateConverter.strToDate;
+import java.util.Date;
+
 /**
  *
  * @author torre
  */
 public class team {
     
-    private String id;
+    private int id;
     private String name;
     private String city;
     private String stadium;
-    private String foundationYear;
-    private String presidentId;
+    private int capacity;
+    private Date foundationYear;
+    private int presidentId;
     private String partido;
+    private String presidentName;
+    
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -34,19 +40,33 @@ public class team {
         this.stadium = stadium;
     }
 
-    public void setFoundationYear(String foundationYear) {
-        this.foundationYear = foundationYear;
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
+    public void setFoundationYear(Date foundationYear) {
+        this.foundationYear = foundationYear;
+    }
+    
     public void setPresidentId(String presidentId) {
+        setPresidentId(presidentId);
+    }
+    
+
+    public void setPresidentId(int presidentId) {
         this.presidentId = presidentId;
     }
+
+    public void setPresidentName(String presidentName) {
+        this.presidentName = presidentName;
+    }
+    
 
     public void setPartido(String partido) {
         this.partido = partido;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -62,13 +82,22 @@ public class team {
         return stadium;
     }
 
-    public String getFoundationYear() {
+    public int getCapacity() {
+        return capacity;
+    }
+    
+    public Date getFoundationYear() {
         return foundationYear;
     }
 
-    public String getPresidentId() {
+    public int getPresidentId() {
         return presidentId;
     }
+
+    public String getPresidentName() {
+        return presidentName;
+    }
+    
 
     public String getPartido() {
         return partido;

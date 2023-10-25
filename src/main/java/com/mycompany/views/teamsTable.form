@@ -130,16 +130,17 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tablePlayers">
+            <Component class="javax.swing.JTable" name="listTeams">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="6" rowCount="4">
-                    <Column editable="true" title="Nombre" type="java.lang.Object"/>
-                    <Column editable="true" title="Estadio" type="java.lang.Object"/>
-                    <Column editable="true" title="Ciudad" type="java.lang.Object"/>
-                    <Column editable="true" title="Aforo" type="java.lang.Object"/>
-                    <Column editable="true" title="Anio Fundacion" type="java.lang.Object"/>
-                    <Column editable="true" title="Presidente" type="java.lang.Object"/>
+                  <Table columnCount="7" rowCount="0">
+                    <Column editable="false" title="ID" type="java.lang.Object"/>
+                    <Column editable="false" title="Nombre" type="java.lang.Object"/>
+                    <Column editable="false" title="Estadio" type="java.lang.Object"/>
+                    <Column editable="false" title="Aforo" type="java.lang.Object"/>
+                    <Column editable="false" title="Anio Fundacion" type="java.lang.Object"/>
+                    <Column editable="false" title="Ciudad" type="java.lang.Object"/>
+                    <Column editable="false" title="Presidente" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

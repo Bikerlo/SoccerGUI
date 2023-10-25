@@ -4,17 +4,72 @@
  */
 package com.mycompany.views;
 
+import com.mycompany.interfaces.PresidentDAO;
+import com.mycompany.interfaces.PresidentDAOimpl;
+import com.mycompany.interfaces.teamDAO;
+import com.mycompany.interfaces.teamDAOimpl;
+import com.mycompany.models.President;
+import com.mycompany.models.team;
+import static com.mycompany.util.DateConverter.dateToStr;
+import java.awt.Color;
+import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.sql.SQLException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author torre
  */
 public class teamsForm extends javax.swing.JPanel {
+    
+    boolean isEdition = false;
+    com.mycompany.models.team teamEdition;
+    int idPresident;
 
     /**
      * Creates new form teamsForms
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
      */
-    public teamsForm() {
+    public teamsForm() throws ClassNotFoundException, SQLException, Exception {
         initComponents();
+        loadPresidents();
+    }
+    
+    public teamsForm(team teamById) {
+        initComponents();
+        isEdition = true;
+        teamEdition = teamById;
+        InitStyles();
+    }
+     private void InitStyles() {
+        title.putClientProperty("FlatLaf.styleClass", "h1");
+        title.setForeground(Color.black);
+        nameText.putClientProperty("JTextField.placeholderText", "Ingrese el Nombre del equipo");
+        stadiumText.putClientProperty("JTextField.placeholderText", "Ingrese el Nombre del estadio");
+        qtyText.putClientProperty("JTextField.placeholderText", "Ingrese el aforo del estadio");
+        cityText.putClientProperty("JTextField.placeholderText", "Ingrese el nombre de la ciudad del equipo");
+        yearText.putClientProperty("JTextField.placeholderText", "Ingrese la fecha de creacion del equipo");
+        presidentCombo.putClientProperty("JTextField.placeholderText", "Ingrese la fecha de creacion del equipo");
+        
+        if (isEdition) {
+            title.setText("Editar Equipo");
+            button.setText("Guardar");
+
+            if (teamEdition != null) {
+                nameText.setText(teamEdition.getName());
+                stadiumText.setText(teamEdition.getStadium());
+                qtyText.setText(String.valueOf(teamEdition.getCapacity()));
+                cityText.setText(teamEdition.getCity());
+                yearText.setDate(teamEdition.getFoundationYear());
+                presidentCombo.setSelectedItem(teamEdition);
+            }
+        }
     }
 
     /**
@@ -29,18 +84,18 @@ public class teamsForm extends javax.swing.JPanel {
         bg = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
         nameLbl = new javax.swing.JLabel();
-        nameTxt = new javax.swing.JTextField();
+        nameText = new javax.swing.JTextField();
         apPLbl = new javax.swing.JLabel();
-        apPTxt = new javax.swing.JTextField();
+        stadiumText = new javax.swing.JTextField();
         apMLbl = new javax.swing.JLabel();
-        apMTxt = new javax.swing.JTextField();
+        qtyText = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         domLbl = new javax.swing.JLabel();
-        domTxt = new javax.swing.JTextField();
+        cityText = new javax.swing.JTextField();
         button = new javax.swing.JButton();
         phoneLbl = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        yearText = new com.toedter.calendar.JDateChooser();
+        presidentCombo = new javax.swing.JComboBox<>();
         phoneLbl1 = new javax.swing.JLabel();
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
@@ -59,7 +114,7 @@ public class teamsForm extends javax.swing.JPanel {
 
         domLbl.setText("Ciudad");
 
-        domTxt.setToolTipText("");
+        cityText.setToolTipText("");
 
         button.setBackground(new java.awt.Color(255, 0, 0));
         button.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -75,7 +130,14 @@ public class teamsForm extends javax.swing.JPanel {
 
         phoneLbl.setText("Anio Fundacion");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        yearText.setDateFormatString("yyyy-M-d");
+
+        presidentCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        presidentCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                presidentComboActionPerformed(evt);
+            }
+        });
 
         phoneLbl1.setText("Presidente");
 
@@ -91,20 +153,20 @@ public class teamsForm extends javax.swing.JPanel {
                             .addGroup(bgLayout.createSequentialGroup()
                                 .addComponent(nameLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                                 .addGap(223, 223, 223))
-                            .addComponent(nameTxt)
+                            .addComponent(nameText)
                             .addGroup(bgLayout.createSequentialGroup()
                                 .addComponent(apPLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(182, 182, 182))
-                            .addComponent(apPTxt)
+                            .addComponent(stadiumText)
                             .addGroup(bgLayout.createSequentialGroup()
                                 .addComponent(apMLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(180, 180, 180))
-                            .addComponent(apMTxt))
+                            .addComponent(qtyText))
                         .addGap(68, 68, 68)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(70, 70, 70)
                         .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(domTxt)
+                            .addComponent(cityText)
                             .addGroup(bgLayout.createSequentialGroup()
                                 .addComponent(domLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(220, 220, 220))
@@ -112,8 +174,8 @@ public class teamsForm extends javax.swing.JPanel {
                                 .addComponent(phoneLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
                                 .addGap(218, 218, 218))
                             .addComponent(button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(yearText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(presidentCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(phoneLbl1, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE))
                         .addGap(72, 72, 72))
                     .addGroup(bgLayout.createSequentialGroup()
@@ -131,29 +193,29 @@ public class teamsForm extends javax.swing.JPanel {
                         .addGap(7, 7, 7)
                         .addComponent(nameLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25)
                         .addComponent(apPLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(apPTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(stadiumText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
                         .addComponent(apMLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(apMTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(qtyText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(170, 170, 170))
                     .addGroup(bgLayout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(domLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(domTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cityText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
                         .addComponent(phoneLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(yearText, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
                         .addComponent(phoneLbl1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(presidentCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(64, 64, 64)
                         .addComponent(button, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(55, 55, 55))
@@ -177,26 +239,128 @@ public class teamsForm extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionPerformed
+        String teamName = nameText.getText();
+        String stadiumName = stadiumText.getText();
+        String qty = qtyText.getText();
+        String city = cityText.getText();
+        Date foundation = yearText.getDate();
+        int president = this.idPresident;
+        
+        
+        
+        // Validaciones para los campos
+        if (teamName.isEmpty() || stadiumName.isEmpty() || qty.isEmpty()|| city.isEmpty() ||  foundation==null) {
+            System.out.println(teamName+stadiumName+qty+city+dateToStr(foundation));
+            javax.swing.JOptionPane.showMessageDialog(this, "Debe llenar todos los campos. \n", "AVISO", javax.swing.JOptionPane.ERROR_MESSAGE);
+            nameText.requestFocus();
+            return;
+        }
 
+        com.mycompany.models.team team = isEdition ? teamEdition : new com.mycompany.models.team();
+        team.setName(teamName);
+        team.setStadium(stadiumName);
+        team.setCapacity(Integer.parseInt(qty));
+        team.setCity(city);
+        team.setFoundationYear(foundation);
+        team.setPresidentId(president);
+        
+        try {
+            teamDAO dao = new teamDAOimpl();
+       
+            if (!isEdition) {
+                dao.create(team);
+            } else {
+                dao.update(team);
+            }
+
+            String successMsg = isEdition ? "modificado" : "registrado";
+
+            javax.swing.JOptionPane.showMessageDialog(this, "Equipo " + successMsg + " exitosamente.\n", "AVISO", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+            if (!isEdition) {
+                nameText.setText("");
+                stadiumText.setText("");
+                qtyText.setText("");
+                cityText.setText("");
+                yearText.setDate(null);
+                
+            }
+        } catch (HeadlessException e) {
+            String errorMsg = isEdition ? "modificar" : "registrar";
+            javax.swing.JOptionPane.showMessageDialog(this, "Ocurrió un error al " + errorMsg + " el equipo. \n", "AVISO", javax.swing.JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
+        }
+        
     }//GEN-LAST:event_buttonActionPerformed
+
+    private void presidentComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_presidentComboActionPerformed
+        
+    }//GEN-LAST:event_presidentComboActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel apMLbl;
-    private javax.swing.JTextField apMTxt;
     private javax.swing.JLabel apPLbl;
-    private javax.swing.JTextField apPTxt;
     private javax.swing.JPanel bg;
     private javax.swing.JButton button;
+    private javax.swing.JTextField cityText;
     private javax.swing.JLabel domLbl;
-    private javax.swing.JTextField domTxt;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel nameLbl;
-    private javax.swing.JTextField nameTxt;
+    private javax.swing.JTextField nameText;
     private javax.swing.JLabel phoneLbl;
     private javax.swing.JLabel phoneLbl1;
+    private javax.swing.JComboBox<String> presidentCombo;
+    private javax.swing.JTextField qtyText;
+    private javax.swing.JTextField stadiumText;
     private javax.swing.JLabel title;
+    private com.toedter.calendar.JDateChooser yearText;
     // End of variables declaration//GEN-END:variables
+
+    private void loadPresidents() throws ClassNotFoundException, SQLException, Exception {
+       /*
+        DefaultComboBoxModel combo = new DefaultComboBoxModel();
+        presidentCombo.setModel(combo);
+        PresidentDAO dao = new PresidentDAOimpl();
+
+        List<President> lista=dao.listAll("");
+     
+        lista.stream()
+            .map(objeto -> objeto.getName()) 
+            .forEachOrdered(nombre -> combo.addElement(nombre));
+        */
+        DefaultComboBoxModel<String> combo = new DefaultComboBoxModel<>(); // Especifica el tipo de datos del modelo como String
+        presidentCombo.setModel(combo);
+        PresidentDAO dao = new PresidentDAOimpl();
+
+        // Crea un HashMap para mapear IDs a nombres
+        HashMap<Integer, String> idToNameMap = new HashMap<>();
+
+        List<President> lista = dao.listAll(""); // Asegúrate de que la lista contenga objetos de tipo President (ajusta el tipo según tu caso)
+
+        // Llena el JComboBox y el HashMap
+        for (President presidente : lista) {
+            String nombre = presidente.getName();
+            int id = presidente.getID();
+
+            combo.addElement(nombre); // Agrega el nombre al JComboBox
+            idToNameMap.put(id, nombre); // Mapea el ID al nombre en el HashMap
+        }
+
+        // Evento al seleccionar un nombre en el JComboBox
+        presidentCombo.addActionListener((ActionEvent e) -> {
+            String nombreSeleccionado = (String) presidentCombo.getSelectedItem();
+            // Obtiene el ID correspondiente al nombre seleccionado
+            for (Map.Entry<Integer, String> entry : idToNameMap.entrySet()) {
+                if (entry.getValue().equals(nombreSeleccionado)) {
+                    int idSeleccionado = entry.getKey();
+                    // Ahora puedes utilizar 'idSeleccionado' en tu consulta de inserción con la llave foránea.
+                    System.out.println("ID seleccionado: " + idSeleccionado);
+                    this.idPresident=idSeleccionado;
+                    break;
+                }
+            }
+        });
+    }
+
 }
